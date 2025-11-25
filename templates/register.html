@@ -1,23 +1,72 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>}
-input:invalid, select:invalid {
- box-shadow: 0 0 5px 1px red;
- }
- }
+<style>
+body {
+  font-family: 'Times New Roman', serif;
+}
+html {
+  font-size: 19px;
+}
+h2{
+    text-align: center;
+  }
+form{
+    text-align: center;
+  }
 </style>
 
 <h2>Refugee Registration Form</h2>
 <form method="POST" action="{{ url_for('submit_form') }}">
-  <p><input type="text" name="name" placeholder="Full name" required></p>
-  <p><input type="text" name="country" placeholder="Country of origin" required pattern="[A-Za-z\s]+" title="Country cannot contain numbers"></p>
-  <p><input type="number" name="age" placeholder="Age" required></p>
- <select name="gender">
-  <option value="Male">Male</option>
-  <option value="Female">Female</option>
-  <option value="Other">Other</option>
-</select>
+    <p>First Name: <input type="text" name="first_name"  required></p>
+    <p>Surname: <input type="text" name="surname"  required></p>
+    <p> Date of Birth: <input type="date" name="birthdate"  required ></p>
+
+    <!--
+    <p><label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+    </select></p>
+    -->
+
+    <label class="container">Male
+        <input name="gender" type="radio" value="male" >
+        <span class="checkmark" ></span>
+    </label>
+    <label class="container">Female
+        <input name="gender" type="radio" value="female" >
+        <span class="checkmark" ></span>
+    </label>
+<p>
+  <label for="medical_condition">Medical Condition:</label>
+  <select id="medical_condition" name="medical_condition" onchange="toggleConditionInput()">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+  </select>
+</p>
+
+<p id="condition_input" style="display:none;">
+  Medical Condition: <input type="text" name="medical_condition_text"  required>
+</p>
+
+<script>
+function toggleConditionInput() {
+  const select = document.getElementById("medical_condition");
+  const conditionInput = document.getElementById("condition_input");
+
+  if (select.value === "Yes") {
+    conditionInput.style.display = "block";
+  } else {
+    conditionInput.style.display = "none";
+  }
+}
+</script>
+
+    <p>Country of origin: <input type="text" name="country" required pattern="[A-Za-z\s]+" title="Country cannot contain numbers"></p>
+
   <p><button type="submit">Submit</button></p>
+</serif>
 </form>
 {% endblock %}
 
