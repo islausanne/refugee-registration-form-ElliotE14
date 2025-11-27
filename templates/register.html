@@ -4,22 +4,21 @@
 body {
   font-family: 'Times New Roman', serif;
 }
-html {
-  font-size: 19px;
+form {
+  font-size: 24px;
 }
-h2{
+h1{
     text-align: center;
   }
 form{
     text-align: center;
-  }
 </style>
 
-<h2>Refugee Registration Form</h2>
+<h1>Refugee Registration Form</h1>
 <form method="POST" action="{{ url_for('submit_form') }}">
-    <p>First Name: <input type="text" name="first_name"  required></p>
-    <p>Surname: <input type="text" name="surname"  required></p>
-    <p> Date of Birth: <input type="date" name="birthdate"  required ></p>
+    <p><b>First Name: </b><input type="text" name="first_name"  required></p>
+    <p><b>Surname: </b><input type="text" name="surname"  required></p>
+    <p><b> Date of Birth: </b><input type="date" name="birthdate"  required ></p>
 
     <!--
     <p><label for="gender">Gender:</label>
@@ -30,7 +29,7 @@ form{
     </select></p>
     -->
 
-    <label class="container">Male
+    <b>Gender: </b><label class="container">Male
         <input name="gender" type="radio" value="male" >
         <span class="checkmark" ></span>
     </label>
@@ -39,15 +38,16 @@ form{
         <span class="checkmark" ></span>
     </label>
 <p>
-  <label for="medical_condition">Medical Condition:</label>
+  <label for="medical_condition"><b>Medical Condition:</b></label>
   <select id="medical_condition" name="medical_condition" onchange="toggleConditionInput()">
+      <option value="">-- Select --</option>
     <option value="No">No</option>
     <option value="Yes">Yes</option>
   </select>
 </p>
 
 <p id="condition_input" style="display:none;">
-  Medical Condition: <input type="text" name="medical_condition_text"  required>
+  <b>Medical Condition: </b><input type="text" name="medical_condition_text"  required>
 </p>
 
 <script>
@@ -63,10 +63,52 @@ function toggleConditionInput() {
 }
 </script>
 
-    <p>Country of origin: <input type="text" name="country" required pattern="[A-Za-z\s]+" title="Country cannot contain numbers"></p>
+    <p><b>Country of origin: </b><input type="text" name="country" required pattern="[A-Za-z\s]+" title="Country cannot contain numbers"></p>
 
-  <p><button type="submit">Submit</button></p>
-</serif>
+    <p>
+  <label for="id_select1"><b>ID Information:</b></label>
+  <select id="id_select1" name="id_information1" onchange="toggleConditionInput1()">
+    <option value="">-- Select --</option>
+    <option value="passport">Passport</option>
+    <option value="id">ID</option>
+    <option value="other">Other</option>
+  </select>
+</p>
+
+<p id="id_input_container1" style="display:none;">
+  <b id="id_label1"></b>
+  <input type="text" name="id_information_text1" required>
+</p>
+
+<script>
+function toggleConditionInput1() {
+  const select = document.getElementById("id_select1");
+  const container = document.getElementById("id_input_container1");
+  const label = document.getElementById("id_label1");
+
+  if (select.value) {
+    // Capitalize first letter & apply label
+    label.textContent = select.value.charAt(0).toUpperCase() + select.value.slice(1) + ": ";
+    container.style.display = "block";
+  } else {
+    container.style.display = "none";
+  }
+}
+</script>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+  <b>Skills/Job:</b><br><textarea style="width:300px;" name="skills_job" ></textarea>
+
+<div style="text-align: center; margin-top: 20px;"> <!-- Spacer -->
+</div>
+    </div>
+</div>
+
+  <p><b>Phone Number:</b><input type="tel" name="phone_number" pattern="^\+?[\d\s()-]{6,20}$" title="Invalid Phone Number"></p>
+
+<br>
+<button type="submit">Submit</button>
+
 </form>
 {% endblock %}
 
