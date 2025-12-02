@@ -18,10 +18,20 @@ def register():
 # Handle form submission (students will add JSON save code here)
 @app.route('/submit', methods=['POST'])
 def submit_form():
-    name = request.form['name']
+    print("TEST")
+    first_name = request.form['first_name']
+    surname = request.form['surname']
+    birthdate = request.form['birthdate']
+    gender = request.form.get('gender')
+    medical_condition = request.form['medical_condition']
+    medical_condition_text = request.form.get('medical_condition_text', "")
     country = request.form['country']
-    age = request.form['age']
-    gender = request.form['gender']
+    id_information1 = request.form.get('id_information1', "")
+    id_information_text1 = request.form.get('id_information_text1', "")
+    skills_job = request.form['skills_job']
+    phone_number = request.form['phone_number']
+    travelling_members = request.form['travelling_members']
+    photo = request.form['photo']
 
     # Check if file exists
     if os.path.exists('registrations.json'):
@@ -31,7 +41,21 @@ def submit_form():
         data = []
 
     # Add the new registration
-    data.append({'name': name, 'country': country, 'age': age, 'gender': gender})
+    data.append({
+        'first_name': first_name,
+        'surname': surname,
+        'birthdate': birthdate,
+        'gender': gender,
+        'medical_condition': medical_condition,
+        'medical_condition_text': medical_condition_text,
+        'country': country,
+        'id_information1': id_information1,
+        'id_information_text1': id_information_text1,
+        'skills_job': skills_job,
+        'phone_number': phone_number,
+        'travelling_members': travelling_members,
+        'photo': photo
+    })
 
     # Save all registrations back to the file
     with open('registrations.json', 'w') as file:

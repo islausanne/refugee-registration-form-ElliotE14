@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>
-body {
-  font-family: 'Times New Roman', serif;
-}
-html {
-  font-size: 19px;
-}
-</style>
 <h2>Registered Refugees</h2>
 {% if registrations %}
   <table>
     <tr>
-      <th>Name</th>
-      <th>Country</th>
-      <th>Age</th>
-        <th>Gender</th>
+        <th>First Name</th>
+      <th>Surname</th>
+      <th>Date of Birth</th>
+      <th>Gender</th>
+      <th>Medical Condition</th>
+      <th>Full Medical Condition</th>
+      <th>Country of Origin</th>
+      <th>ID Type</th>
+      <th>ID Information</th>
+      <th>Skills/Job</th>
+      <th>Phone Number</th>
+      <th>Travelling Members</th>
+      <th>Photo</th>
     </tr>
     {% for person in registrations %}
       <tr>
-        <td>{{ person.name }}</td>
+        <td>{{ person.first_name }}</td>
+        <td>{{ person.surname }}</td>
+        <td>{{ person.birthdate }}</td>
+        <td>{{ person.gender }}</td>
+        <td>{{ person.medical_condition }}</td>
+        <td>{{ person.medical_condition_text }}</td>
         <td>{{ person.country }}</td>
-        <td>{{ person.age }}</td>
-          <td>{{ person.gender }}</td>
+        <td>{{ person.id_information1 }}</td>
+        <td>{{ person.id_information_text1 }}</td>
+        <td>{{ person.skills_job }}</td>
+        <td>{{ person.phone_number }}</td>
+        <td>{{ person.travelling_members }}</td>
+        <td>{{ person.photo }}</td>
+
+
       </tr>
     {% endfor %}
   </table>
