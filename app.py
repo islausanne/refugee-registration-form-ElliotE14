@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 import os
@@ -19,6 +20,7 @@ def register():
 @app.route('/submit', methods=['POST'])
 def submit_form():
     print("TEST")
+    # Get form inputs
     first_name = request.form['first_name']
     surname = request.form['surname']
     birthdate = request.form['birthdate']
@@ -63,18 +65,15 @@ def submit_form():
 
     return redirect(url_for('index'))
 
-    # TODO: Save form data to a JSON file (worksheet Part 1)
-
     flash('Registration submitted successfully!')
     return redirect(url_for('index'))
 
-# Display stored registrations (students will add JSON reading code here)
+# Display stored registrations
 @app.route('/view')
 def view_registrations():
     with open('registrations.json', 'r') as file:
         data = json.load(file)
     return render_template('view.html', registrations=data)
-    # TODO: Read data from registrations.json and send to template (worksheet Part 2)
 
     return render_template('view.html', registrations=[])
 

@@ -11,6 +11,7 @@ html {
 <head>
   <meta charset="UTF-8">
   <title>Refugee Registration</title>
+      <!-- Page styling -->
   <style>
     body { font-family: 'Times New Roman', serif; margin: 40px; font-size: 24px;}
     nav a { margin-right: 15px; text-decoration: none; color: #0066cc; }
@@ -20,11 +21,14 @@ html {
   </style>
 </head>
 <body>
+<!-- Menu -->
+
   <nav>
     <a href="/">Home</a>
     <a href="/register">Register</a>
       <a href="/view">View data</a>
   </nav>
+  <!-- Flash message sending -->
   <hr>
   {% with messages = get_flashed_messages() %}
     {% if messages %}

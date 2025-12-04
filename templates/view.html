@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- Title (haeding) -->
 <h2>Registered Refugees</h2>
 {% if registrations %}
-  <table>
+<style>
+    table {
+    width: 100%;
+    }
+</style>
+  <table> <!-- Table to display all registration data -->
     <tr>
         <th>First Name</th>
       <th>Surname</th>
@@ -18,7 +24,7 @@
       <th>Travelling Members</th>
       <th>Photo</th>
     </tr>
-    {% for person in registrations %}
+    {% for person in registrations %} <!-- loop through all stored data -->
       <tr>
         <td>{{ person.first_name }}</td>
         <td>{{ person.surname }}</td>

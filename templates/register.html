@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- Page styling -->
 <style>
 h1{
     text-align: center;
@@ -31,7 +32,8 @@ form{
         <input name="gender" type="radio" value="female" >
         <span class="checkmark" ></span>
     </label>
-<p>
+<!-- Dropdown that reveals when "Yes" is selected -->
+    <p>
   <label for="medical_condition"><b>Medical Condition:</b></label>
   <select id="medical_condition" name="medical_condition" onchange="toggleConditionInput()">
       <option value="">-- Select --</option>
@@ -39,20 +41,20 @@ form{
     <option value="Yes">Yes</option>
   </select>
 </p>
-
+<!-- Hidden field that appears if user "Yes" is selected -->
 <p id="condition_input" style="display:none;">
   <b>Medical Condition: </b><input type="text" name="medical_condition_text" >
 </p>
 
+    <!--Javascript that controls the visibility of the medical condition part-->
 <script>
 function toggleConditionInput() {
-  const select = document.getElementById("medical_condition");
-  const conditionInput = document.getElementById("condition_input");
-
+  const select = document.getElementById("medical_condition"); // this part gets/ creates a link to the box called "medical_condition"
+  const conditionInput = document.getElementById("condition_input")// this part gets/ creates a link to the box called "condition_input"
   if (select.value === "Yes") {
-    conditionInput.style.display = "block";
+    conditionInput.style.display = "block"; // if the value is "Yes" from the dropdown, then the box is visble"
   } else {
-    conditionInput.style.display = "none";
+    conditionInput.style.display = "none";// if the value is "No" from the dropdown, then the box is not visible
   }
 }
 </script>
@@ -61,7 +63,7 @@ function toggleConditionInput() {
 
     <p>
   <label for="id_select1"><b>ID Information:</b></label>
-  <select id="id_select1" name="id_information1" onchange="toggleConditionInput1()">
+  <select id="id_select1" name="id_information1" onchange="toggleConditionInput1()"> <!-- When it changes this it runs the Javascript -->
     <option value="">-- Select --</option>
     <option value="passport">Passport</option>
     <option value="id">ID</option>
@@ -69,28 +71,29 @@ function toggleConditionInput() {
   </select>
 </p>
 
-<p id="id_input_container1" style="display:none;">
-  <b id="id_label1"></b>
-  <input type="text" name="id_information_text1" >
+<p id="id_input_container1" style="display:none;"> <!-- Hidden at first -->
+  <b id="id_label1"></b> <!-- Empty label that the Javascript will fill -->
+  <input type="text" name="id_information_text1" > <!-- The person will input the info -->
 </p>
 
 <script>
 function toggleConditionInput1() {
-  const select = document.getElementById("id_select1");
-  const container = document.getElementById("id_input_container1");
-  const label = document.getElementById("id_label1");
+  const select = document.getElementById("id_select1"); // this part creates a link to the dropdown box called "id_select1"
+  const container = document.getElementById("id_input_container1");  // this creates a link to the hidden area that will show the extra text box
+  const label = document.getElementById("id_label1"); //this creates a link to the label text so it can change what it says (Passport:, ID: and Other)
 
   if (select.value) {
-    // Capitalize first letter & apply label
-    label.textContent = select.value.charAt(0).toUpperCase() + select.value.slice(1) + ": ";
-    container.style.display = "block";
+    label.textContent = select.value.charAt(0).toUpperCase() + select.value.slice(1) + ": "; // this makes the first letter a capital and adds a colon,"Passport:"
+    container.style.display = "block";   // makes the box is visble if something is selected
   } else {
-    container.style.display = "none";
+    container.style.display = "none"; // stays visible if nothing is selected
   }
 }
+
 </script>
 <div style="display: flex; justify-content: center; align-items: center;">
     <div style="display: flex; align-items: center; gap: 10px;">
+
   <b>Skills/Job:</b><br><textarea style="width:300px;" name="skills_job" ></textarea>
 
 <div style="text-align: center; margin-top: 20px;"> <!-- Less Space -->
@@ -105,8 +108,11 @@ function toggleConditionInput1() {
     <p><b>Photo: </b><input type="file" name="photo"  ></p>
 
 <br>
+    <!-- Submit to send the form data to the server -->
 <button type="submit">Submit</button>
 
 </form>
+
 {% endblock %}
+
 
